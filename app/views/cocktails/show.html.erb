@@ -1,2 +1,15 @@
-<h1>Cocktails#show</h1>
-<p>Find me in app/views/cocktails/show.html.erb</p>
+<h1><%= @cocktail.name %></h1>
+<%= simple_form_for @cocktail do |f| %>
+  <%= f.association :ingredients %>
+  <%= f.association :doses, label_method: :description %>
+<% end %>
+
+<button type="button" class="btn btn-secondary"><%= link_to 'Go back', cocktails_path %></button>
+<button type="button" class="btn btn-success"><%= link_to 'Add new doses', new_cocktail_dose_path(@cocktail) %></button>
+
+<% @cocktail.doses.each do |dose| %>
+  <p>Here's a dose: (...)<p>
+
+  <button type="button" class="btn btn-danger"><%= link_to 'Delete the dose', dose_path(dose), method: :delete %></button>
+
+<% end %>

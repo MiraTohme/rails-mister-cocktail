@@ -1,0 +1,1 @@
+<%= image_tag(lime-907124_1280.jpg) do %>

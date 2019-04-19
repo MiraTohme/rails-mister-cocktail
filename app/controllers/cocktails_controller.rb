@@ -1,6 +1,11 @@
 class CocktailsController < ApplicationController
   def index
-    @cocktails = Cocktail.all
+    query = params[:query]
+    if query == nil || query.blank?
+      @cocktails = Cocktail.all
+    else
+      @cocktails = Cocktail.where(name: params[:query])
+    end
   end
 
   def show
